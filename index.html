@@ -49,13 +49,6 @@
       <h1>Menus</h1>
 
       <div class="menu-container">
-        <!-- Left arrow for menu -->
-        <button
-          class="menu-arrow menu-arrow-left"
-          onclick="previousMenuImage()"
-        >
-          &#10094;
-        </button>
 
         <!-- Three side-by-side images -->
         <img
@@ -73,13 +66,13 @@
         alt="Menu Image 2"
         onclick="openMenuFullscreen(2)"
         />
+    <!-- Fullscreen Overlay -->
+    <div id="fullscreen-overlay" style="display: none;" onclick="closeFullscreen()">
+    <button onclick="event.stopPropagation(); prevFullscreenImage();">&#10094;</button>
+    <img id="fullscreen-image" src="" alt="Fullscreen View" />
+    <button onclick="event.stopPropagation(); nextFullscreenImage();">&#10095;</button>
+    </div>
 
-        <!-- Right arrow for menu -->
-        <button class="menu-arrow menu-arrow-right" onclick="nextMenuImage()">
-          &#10095;
-        </button>
-      </div>
-    </section>
 
 
    <!-- Contact Section -->
