@@ -45,3 +45,30 @@ function nextFullscreenImage() {
   }
 }
 
+#fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  #fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  #fullscreen-overlay button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    margin: 0 2rem;
+    cursor: pointer;
+  }
+  
