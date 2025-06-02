@@ -69,12 +69,14 @@
       </div> 
 
 
-      <!-- Fullscreen Overlay -->
-      <div id="fullscreen-overlay" style="display: none;" onclick="closeFullscreen()">
-      <button onclick="event.stopPropagation(); prevFullscreenImage();">&#10094;</button>
-      <img id="fullscreen-image" src="" alt="Fullscreen View" />
-      <button onclick="event.stopPropagation(); nextFullscreenImage();">&#10095;</button>
-      </div>
+    <!-- Fullscreen Overlay -->
+      <div id="fullscreen-overlay" class="fullscreen-overlay" onclick="closeFullscreen()">
+        <button class="fullscreen-close" onclick="event.stopPropagation(); closeFullscreen()">✕</button>
+        <button class="fullscreen-nav left" onclick="event.stopPropagation(); prevFullscreenImage()">❮</button>
+        <img id="fullscreen-image" src="" alt="Fullscreen View" />
+        <button class="fullscreen-nav right" onclick="event.stopPropagation(); nextFullscreenImage()">❯</button>
+    </div>
+
 
 
 
