@@ -56,6 +56,30 @@ nav .nav-links a:hover {
   color: #d4a574;
 }
 
+/* Instagram Section - Hero */
+.instagram-hero {
+  padding: 80px 30px 60px;
+  text-align: center;
+  background: linear-gradient(135deg, #f8f6f0 0%, #fff 100%);
+}
+
+.instagram-hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2c2c2c;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.instagram-hero p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Instagram Widget Mobile Fix */
 @media (max-width: 768px) {
   /* Force the widget container to display as grid */
@@ -117,6 +141,7 @@ nav .nav-links a:hover {
     width: 100% !important;
   }
 }
+
 /* Logo Section */
 .logo-section {
   padding: 60px 30px;
