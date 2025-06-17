@@ -56,30 +56,67 @@ nav .nav-links a:hover {
   color: #d4a574;
 }
 
-/* Instagram Section - Hero */
-.instagram-hero {
-  padding: 80px 30px 60px;
-  text-align: center;
-  background: linear-gradient(135deg, #f8f6f0 0%, #fff 100%);
+/* Instagram Widget Mobile Fix */
+@media (max-width: 768px) {
+  /* Force the widget container to display as grid */
+  #ftnhm13xuk {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  
+  /* Target the widget's internal structure */
+  #ftnhm13xuk > div,
+  #ftnhm13xuk .ft-widget,
+  #ftnhm13xuk .ft-widget > div {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  /* Ensure images are responsive within the grid */
+  #ftnhm13xuk img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+  
+  /* If the widget uses flex layout, override it */
+  #ftnhm13xuk * {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  
+  /* Target common Instagram widget structures */
+  #ftnhm13xuk [class*="instagram"],
+  #ftnhm13xuk [class*="insta"],
+  #ftnhm13xuk [class*="feed"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
 }
 
-.instagram-hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #2c2c2c;
-  font-weight: 300;
-  letter-spacing: 2px;
+/* Alternative approach - if the above doesn't work */
+@media (max-width: 768px) {
+  .instagram-hero {
+    padding: 60px 15px 40px; /* Reduced padding for mobile */
+  }
+  
+  /* Force widget to use masonry layout with 2 columns */
+  #ftnhm13xuk {
+    columns: 2 !important;
+    column-gap: 10px !important;
+    width: 100% !important;
+  }
+  
+  #ftnhm13xuk > * {
+    break-inside: avoid !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
 }
-
-.instagram-hero p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 40px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Logo Section */
 .logo-section {
   padding: 60px 30px;
