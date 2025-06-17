@@ -80,24 +80,40 @@ nav .nav-links a:hover {
   margin-right: auto;
 }
 
+/* Device-specific widget styles */
+.widget-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-/* Alternative approach - if the above doesn't work */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Media queries as backup */
 @media (max-width: 768px) {
-  .instagram-hero {
-    padding: 60px 15px 40px; /* Reduced padding for mobile */
+  .desktop-only {
+    display: none !important;
   }
-  
-  /* Force widget to use masonry layout with 2 columns */
-  #ftnhm13xuk {
-    columns: 2 !important;
-    column-gap: 10px !important;
-    width: 100% !important;
+  .mobile-only {
+    display: block !important;
   }
-  
-  #ftnhm13xuk > * {
-    break-inside: avoid !important;
-    margin-bottom: 10px !important;
-    width: 100% !important;
+  .widget-container {
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
   }
 }
 
