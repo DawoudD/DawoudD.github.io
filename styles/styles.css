@@ -56,44 +56,12 @@ nav .nav-links a:hover {
   color: #d4a574;
 }
 
-/* Instagram Section - Hero */
-.instagram-hero {
-  padding: 80px 30px 60px;
-  text-align: center;
-  background: linear-gradient(135deg, #f8f6f0 0%, #fff 100%);
-}
-
-.instagram-hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #2c2c2c;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.instagram-hero p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 40px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 
 /* Logo Section */
 .logo-section {
   padding: 60px 30px;
   text-align: center;
   background: white;
-}
-
-.logo-section .main-logo {
-  max-width: 300px;
-  height: auto;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .logo-section h1 {
