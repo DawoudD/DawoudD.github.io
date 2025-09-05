@@ -94,25 +94,64 @@ nav .nav-links a:hover {
   display: none;
 }
 
-@media (min-width: 769px) {
-  .desktop-only {
-    display: block !important;
+
+/* Aggressive Fouita widget override */
+#instagram-widget-container {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+}
+
+/* Force desktop layout regardless of screen size */
+#ft1866w66 {
+  width: 100% !important;
+  min-height: 400px !important;
+}
+
+/* Target all possible Fouita carousel elements */
+#ft1866w66 .fouita-carousel,
+#ft1866w66 [class*="fouita"],
+#ft1866w66 [class*="carousel"],
+#ft1866w66 [class*="slider"],
+#ft1866w66 [class*="grid"],
+#ft1866w66 > div,
+#ft1866w66 iframe {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: none !important;
+}
+
+/* Override mobile responsive behavior */
+@media (max-width: 768px) {
+  #ft1866w66 {
+    transform: scale(0.9) !important;
+    transform-origin: center top !important;
+    width: 111% !important;
+    margin-left: -5.5% !important;
   }
-  .mobile-only {
-    display: none !important;
+  
+  /* Force horizontal scroll if needed */
+  #instagram-widget-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 }
 
-/* Update mobile styles to show the widget */
-@media (max-width: 768px) {
-  .widget-container {
-    padding: 0 15px;
+@media (max-width: 480px) {
+  #ft1866w66 {
+    transform: scale(0.8) !important;
+    width: 125% !important;
+    margin-left: -12.5% !important;
   }
-  
-  /* Ensure desktop widget shows on mobile */
-  .desktop-only {
-    display: block !important;
-  }
+}
+
+/* Hide any mobile-specific elements that might appear */
+#ft1866w66 [class*="mobile"],
+#ft1866w66 [class*="responsive-mobile"] {
+  display: none !important;
+}
+
   
   /* Instagram hero section mobile adjustments */
   .instagram-hero {
@@ -122,7 +161,6 @@ nav .nav-links a:hover {
   .instagram-hero h2 {
     font-size: 2rem;
   }
-}
 
 
 /* Alternative approach - if the above doesn't work */
@@ -427,131 +465,4 @@ nav .nav-links a:hover {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .menu-container {
-    grid-template-columns: 1fr;
-  }
-
-  nav .nav-links {
-    gap: 15px;
-  }
-
-  nav .nav-links a {
-    font-size: 0.85rem;
-  }
-
-  .instagram-hero h2,
-  .about-content h2,
-  .menu-section h2,
-  .recipes-section h2,
-  .contact-section h2 {
-    font-size: 2rem;
-  }
-
-  .logo-section h1 {
-    font-size: 2.5rem;
-  }
-
-  .fullscreen-nav {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .fullscreen-nav.left {
-    left: 15px;
-  }
-
-  .fullscreen-nav.right {
-    right: 15px;
-  }
-}
-
-/* Override Fouita Instagram widget responsive behavior */
-/* Target your specific widget */
-#ft1866w66,
-#ft1866w66 * {
-    /* Force desktop layout on all devices */
-    box-sizing: border-box !important;
-}
-
-/* Main widget container */
-#ft1866w66 {
-    width: 100% !important;
-    max-width: 1000px !important;
-    margin: 0 auto !important;
-}
-
-/* Override mobile styles for the widget content */
-@media (max-width: 768px) {
-    /* Show widget on mobile by removing the desktop-only restriction */
-    .desktop-only {
-        display: block !important;
-    }
-    
-    .mobile-only {
-        display: none !important;
-    }
-    
-    /* Force the widget to maintain desktop layout */
-    #ft1866w66 {
-        display: block !important;
-        width: 100% !important;
-        overflow-x: auto !important; /* Allow horizontal scroll if needed */
-    }
-    
-    /* Target the carousel container specifically */
-    #ft1866w66 .fouita-carousel,
-    #ft1866w66 [class*="carousel"],
-    #ft1866w66 [class*="slider"],
-    #ft1866w66 > div {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        scroll-behavior: smooth !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
-    
-    /* Force individual items to maintain size */
-    #ft1866w66 .fouita-carousel > *,
-    #ft1866w66 [class*="carousel"] > *,
-    #ft1866w66 [class*="slider"] > *,
-    #ft1866w66 > div > * {
-        flex: 0 0 auto !important;
-        min-width: 280px !important;
-        margin-right: 15px !important;
-    }
-    
-    /* Alternative approach - if it's a grid layout */
-    #ft1866w66 [class*="grid"],
-    #ft1866w66 [class*="posts"] {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-        width: 100% !important;
-    }
-    
-    /* For very small screens, allow single column but maintain desktop styling */
-    @media (max-width: 480px) {
-        #ft1866w66 [class*="grid"],
-        #ft1866w66 [class*="posts"] {
-            grid-template-columns: 1fr !important;
-        }
-    }
-}
-
-/* Additional fallback styles */
-#ft1866w66 img {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: cover !important;
-}
-
-/* Ensure no mobile-specific hiding */
-@media (max-width: 768px) {
-    #ft1866w66 {
-        visibility: visible !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
 }

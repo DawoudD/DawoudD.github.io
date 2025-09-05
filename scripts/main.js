@@ -74,67 +74,120 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Force Fouita widget to display same on mobile and desktop
-function forceFouitaDesktopLayout() {
-    setTimeout(() => {
-        const widget = document.getElementById('ft1866w66');
-        if (widget) {
-            // Force display
-            widget.style.display = 'block';
-            widget.style.visibility = 'visible';
-            widget.style.opacity = '1';
-            
-            // Find all child elements and prevent mobile responsive behavior
-            const allElements = widget.querySelectorAll('*');
-            allElements.forEach(el => {
-                // Remove any mobile-specific classes or styles
-                if (el.classList) {
-                    // Remove common mobile classes
-                    el.classList.remove('mobile-view', 'mobile-layout', 'responsive-mobile');
-                }
-                
-                // Force specific styles for carousel/grid behavior
-                if (el.style) {
-                    el.style.minWidth = '';
-                    el.style.maxWidth = '';
-                }
-            });
-        }
-    }, 1000);
-    
-    // Run again after a longer delay to catch late-loading content
-    setTimeout(() => forceFouitaDesktopLayout(), 3000);
-}
-
-// Run when DOM is ready
-document.addEventListener('DOMContentLoaded', forceFouitaDesktopLayout);
-
-// Run on window resize
-window.addEventListener('resize', () => {
-    setTimeout(forceFouitaDesktopLayout, 500);
-});
-
-// Use MutationObserver to watch for widget changes
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-            const widget = document.getElementById('ft1866w66');
-            if (widget && (mutation.target === widget || mutation.target.closest('#ft1866w66'))) {
-                setTimeout(forceFouitaDesktopLayout, 100);
-            }
-        }
+// Viewport spoofing and widget override
+(function() {
+  // Override viewport detection
+  let originalInnerWidth = window.innerWidth;
+  let originalOuterWidth = window.outerWidth;
+  
+  // Spoof desktop viewport for widget
+  function spoofDesktopViewport() {
+    // Override window dimensions
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 1200
     });
-});
-
-// Start observing once the widget exists
-setTimeout(() => {
-    const widget = document.getElementById('ft1866w66');
-    if (widget) {
-        observer.observe(widget, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['style', 'class']
+    
+    Object.defineProperty(window, 'outerWidth', {
+      writable: true,
+      configurable: true,
+      value: 1200
+    });
+    
+    // Override screen object
+    Object.defineProperty(window.screen, 'width', {
+      writable: true,
+      configurable: true,
+      value: 1200
+    });
+    
+    // Override media query results
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = function(query) {
+      if (query.includes('max-width')) {
+        return {
+          matches: false,
+          media: query,
+          addListener: function() {},
+          removeListener: function() {},
+          addEventListener: function() {},
+          removeEventListener: function() {}
+        };
+      }
+      return originalMatchMedia.call(this, query);
+    };
+  }
+  
+  function restoreViewport() {
+    // Restore original values after widget loads
+    setTimeout(() => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: originalInnerWidth
+      });
+      
+      Object.defineProperty(window, 'outerWidth', {
+        writable: true,
+        configurable: true,
+        value: originalOuterWidth
+      });
+    }, 5000);
+  }
+  
+  // Apply viewport spoofing before widget loads
+  spoofDesktopViewport();
+  
+  // Restore after widget initialization
+  setTimeout(restoreViewport, 5000);
+  
+  // Force desktop layout after widget loads
+  function forceDesktopLayout() {
+    setTimeout(() => {
+      const widget = document.getElementById('ft1866w66');
+      if (widget) {
+        // Force all child elements to use desktop styling
+        const allElements = widget.querySelectorAll('*');
+        allElements.forEach(el => {
+          if (el.style) {
+            el.style.width = '';
+            el.style.minWidth = '';
+            el.style.maxWidth = '';
+            el.style.flexDirection = '';
+            el.style.flexWrap = '';
+          }
+          
+          // Remove mobile classes
+          if (el.classList) {
+            const classesToRemove = Array.from(el.classList).filter(cls => 
+              cls.includes('mobile') || 
+              cls.includes('responsive') || 
+              cls.includes('small')
+            );
+            classesToRemove.forEach(cls => el.classList.remove(cls));
+          }
         });
-    }
-}, 2000);
+        
+        // Force container to maintain width
+        widget.style.width = '100%';
+        widget.style.minWidth = '100%';
+        
+        console.log('Fouita widget desktop layout forced');
+      }
+    }, 2000);
+    
+    // Second attempt after longer delay
+    setTimeout(() => forceDesktopLayout(), 4000);
+  }
+  
+  // Execute when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forceDesktopLayout);
+  } else {
+    forceDesktopLayout();
+  }
+})();
+
+
+src="https://wdg.fouita.com/widgets/0x26674b.js"
