@@ -74,36 +74,67 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-//   // select widget based on device type
-// (function() {
-//   function isMobileDevice() {
-//     const screenWidth = window.innerWidth || document.documentElement.clientWidth;
-//     return screenWidth <= 768;
-//   }
-  
-//   function toggleWidgets() {
-//     const desktopWidget = document.getElementById('desktop-widget');
-//     const mobileWidget = document.getElementById('mobile-widget');
+// Force Fouita widget to display same on mobile and desktop
+function forceFouitaDesktopLayout() {
+    setTimeout(() => {
+        const widget = document.getElementById('ft1866w66');
+        if (widget) {
+            // Force display
+            widget.style.display = 'block';
+            widget.style.visibility = 'visible';
+            widget.style.opacity = '1';
+            
+            // Find all child elements and prevent mobile responsive behavior
+            const allElements = widget.querySelectorAll('*');
+            allElements.forEach(el => {
+                // Remove any mobile-specific classes or styles
+                if (el.classList) {
+                    // Remove common mobile classes
+                    el.classList.remove('mobile-view', 'mobile-layout', 'responsive-mobile');
+                }
+                
+                // Force specific styles for carousel/grid behavior
+                if (el.style) {
+                    el.style.minWidth = '';
+                    el.style.maxWidth = '';
+                }
+            });
+        }
+    }, 1000);
     
-//     if (isMobileDevice()) {
-//       desktopWidget.style.display = 'none';
-//       mobileWidget.style.display = 'block';
-//     } else {
-//       desktopWidget.style.display = 'block';
-//       mobileWidget.style.display = 'none';
-//     }
-//   }
-  
-//   // Initialize
-//   if (document.readyState === 'loading') {
-//     document.addEventListener('DOMContentLoaded', toggleWidgets);
-//   } else {
-//     toggleWidgets();
-//   }
-  
-//   // Re-check on resize
-//   window.addEventListener('resize', function() {
-//     setTimeout(toggleWidgets, 250);
-//   });
-// })();
+    // Run again after a longer delay to catch late-loading content
+    setTimeout(() => forceFouitaDesktopLayout(), 3000);
+}
+
+// Run when DOM is ready
+document.addEventListener('DOMContentLoaded', forceFouitaDesktopLayout);
+
+// Run on window resize
+window.addEventListener('resize', () => {
+    setTimeout(forceFouitaDesktopLayout, 500);
+});
+
+// Use MutationObserver to watch for widget changes
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+            const widget = document.getElementById('ft1866w66');
+            if (widget && (mutation.target === widget || mutation.target.closest('#ft1866w66'))) {
+                setTimeout(forceFouitaDesktopLayout, 100);
+            }
+        }
+    });
+});
+
+// Start observing once the widget exists
+setTimeout(() => {
+    const widget = document.getElementById('ft1866w66');
+    if (widget) {
+        observer.observe(widget, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style', 'class']
+        });
+    }
+}, 2000);
