@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>D. Dawoud private cheff</title>
+    <title>D. Dawoud private chef</title>
     <script src="scripts/main.js"></script>
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
@@ -12,99 +12,111 @@
     <!-- Navbar -->
     <nav>
       <div class="logo">
-        <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" style="height: 50px;" />
-      </div></div>
+        <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
+      </div>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#menu">Menus</a>
-        <a href="#Recipies">Recipies</a>
-        <a href="#get-in-touch">Contact</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero">
-      <h1>D. Dawoud</h1>
-      <p>
-        Private cheff and cooking class instructor.
-      </p>
-      <a href="#menu" class="cta-button">View Menus</a>
+    <!-- Instagram Hero Section -->
+    <section class="instagram-hero">
+      <h2>Follow Our Culinary Journey</h2>
+      <p>Discover the art of private dining through our Instagram showcase</p>
+
+
+    <!-- DESKTOP WIDGET -->
+    <div id="desktop-widget" class="widget-container desktop-only"> 
+      <div data-key="Carousel Instagram Feed " class="ft" id="ft1866w66"></div>
+      <script src="https://wdg.fouita.com/widgets/0x26674b.js"></script>
     </div>
+  
+    <!-- MOBILE WIDGET -->
+    <div id="mobile-widget" class="widget-container mobile-only">
+      <div data-key="Masonry Instagram Feed" class="ft" id="mobile-fouita-widget"></div>
+      <script src="https://static.elfsight.com/platform/platform.js" async></script>
+      <div class="elfsight-app-8811a3b8-a11b-4311-a74a-9ecf5b3a11bb" data-elfsight-app-lazy></div>
+    </div>
+
+    <!-- Logo Section -->
+    <section class="logo-section">
+      <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" class="main-logo" />
+      <h1>D. Dawoud</h1>
+      <p class="tagline">Private Chef & Culinary Instructor</p>
+    </section>
 
     <!-- About Section -->
-    <section id="about">
-      <h1>About me</h1>
-      <p>
-        At Ramen Paradise, we pride ourselves on crafting authentic, handmade
-        ramen noodles. Using only the freshest ingredients and traditional
-        techniques, we deliver a ramen experience like no other.
-      </p>
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-content">
+          <h2>About Me</h2>
+          <p>
+            Welcome to my culinary world. As a dedicated private chef and cooking instructor, 
+            I bring the art of fine dining directly to your table. With years of experience 
+            crafting memorable dining experiences, I specialize in creating bespoke menus 
+            that celebrate both traditional techniques and modern innovation.
+          </p>
+          <p>
+            Every dish tells a story, and I'm passionate about sharing that narrative through 
+            carefully sourced ingredients, expert preparation, and personalized service that 
+            transforms meals into unforgettable experiences.
+          </p>
+        </div>
+        <div class="about-image">
+          <!-- Placeholder for your image -->
+          <div class="placeholder-image">
+            Your Chef Photo<br>Goes Here
+          </div>
+        </div>
+      </div>
     </section>
-
-    <!-- Fouita Instagram Widget -->
-    <div id="ftfh80xhb"></div>
-    <script src="https://wdg.fouita.com/widgets/0x259fa3.js"></script>
-    </section>
-
-
 
     <!-- Menu Section -->
-    <section id="menu">
-      <h1>Menus</h1>
-
+    <section id="menu" class="menu-section">
+      <h2>Our Menus</h2>
       <div class="menu-container">
-
-        <!-- Three side-by-side images -->
-        <img
-          src="images/menu1.jpeg"
-          alt="Menu Image 1"
-          onclick="openMenuFullscreen(0)"
-        />
-        <img
-          src="images/menu1.jpeg"
-          alt="Menu Image 2"
-          onclick="openMenuFullscreen(1)"
-        />
-        <img
-        src="images/menu1.jpeg"
-        alt="Menu Image 2"
-        onclick="openMenuFullscreen(2)"
-        />
-      </div> 
-
+        <img src="images/menu1.jpeg" alt="Menu 1" onclick="openMenuFullscreen(0)" />
+        <img src="images/menu1.jpeg" alt="Menu 2" onclick="openMenuFullscreen(1)" />
+        <img src="images/menu1.jpeg" alt="Menu 3" onclick="openMenuFullscreen(2)" />
+      </div>
+    </section>
 
     <!-- Fullscreen Overlay -->
-      <div id="fullscreen-overlay" class="fullscreen-overlay" onclick="closeFullscreen()">
-        <button class="fullscreen-close" onclick="event.stopPropagation(); closeFullscreen()">✕</button>
-        <button class="fullscreen-nav left" onclick="event.stopPropagation(); prevFullscreenImage()">❮</button>
+    <div id="fullscreen-overlay" class="fullscreen-overlay" onclick="closeFullscreen()">
+      <div class="fullscreen-content">
+        <button class="fullscreen-close" onclick="event.stopPropagation(); closeFullscreen()">×</button>
+        <button class="fullscreen-nav left" onclick="event.stopPropagation(); prevFullscreenImage()">‹</button>
         <img id="fullscreen-image" src="" alt="Fullscreen View" />
-        <button class="fullscreen-nav right" onclick="event.stopPropagation(); nextFullscreenImage()">❯</button>
+        <button class="fullscreen-nav right" onclick="event.stopPropagation(); nextFullscreenImage()">›</button>
+      </div>
     </div>
 
-
     <!-- Recipes Section -->
-    <section id="Recipies">
-      <h1>Recipes</h1>
-      <p>Explore our collection of delicious recipes:</p>
+    <section id="recipes" class="recipes-section">
+      <h2>Signature Recipes</h2>
+      <p>Explore our collection of carefully crafted recipes:</p>
       <ul class="recipe-list">
-        <li><a href="https://www.example.com/recipe1" target="_blank">Recipe 1</a></li>
-        <li><a href="https://www.example.com/recipe2" target="_blank">Recipe 2</a></li>
-        <li><a href="https://www.example.com/recipe3" target="_blank">Recipe 3</a></li>
+        <li><a href="https://www.example.com/recipe1" target="_blank">Classic Coq au Vin</a></li>
+        <li><a href="https://www.example.com/recipe2" target="_blank">Mediterranean Sea Bass</a></li>
+        <li><a href="https://www.example.com/recipe3" target="_blank">Truffle Risotto</a></li>
       </ul>
     </section>
 
-
-
-   <!-- Contact Section -->
-    <section id="contact">
-      <h1>Contact</h1>
-      <p>For bookings and enquiries, feel free to reach out:</p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <h2>Get In Touch</h2>
+      <p>For private dining experiences and culinary classes, reach out:</p>
       <ul class="contact-details">
-        <li><strong>Email:</strong> <a href="mailto:hello@dawoudchef.com">Dawoudsamy07@gmail.com</a></li>
-        <li><strong>Phone:</strong> <a href="tel:+447712345678">+44 7448669245</a></li>
-        <li><strong>Instagram:</strong> <a href="https://instagram.com/bite_of_passage_/" target="_blank">@Bite_of_passage</a></li>
+        <li><strong>Email:</strong> <a href="mailto:Dawoudsamy07@gmail.com">Dawoudsamy07@gmail.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+447448669245">+44 7448 669 245</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/bite_of_passage_/" target="_blank">@bite_of_passage_</a></li>
       </ul>
     </section>
+  </body>
+</html>
 
     <!-- Footer -->
     <footer>
