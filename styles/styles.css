@@ -79,61 +79,41 @@ nav .nav-links a:hover {
   margin-left: auto;
   margin-right: auto;
 }
-/* Device-specific widget styles */
+
+/* FOUITA WIDGET - NUCLEAR OPTION - IDENTICAL ON ALL DEVICES */
 .widget-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+  display: block !important;
 }
 
-.desktop-only {
-  display: block;
+/* Force Fouita widget to behave identically everywhere */
+#ft1866w66,
+#ft1866w66 * {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
 
-.mobile-only {
-  display: none;
-}
-
-/* Media queries as backup */
+/* Override any mobile-specific styling */
 @media (max-width: 768px) {
-  .desktop-only {
-    display: none !important;
-  }
-  .mobile-only {
-    display: block !important;
-  }
   .widget-container {
-    padding: 0 15px;
+    padding: 0 15px !important;
+    max-width: 100% !important;
+  }
+  
+  #ft1866w66 {
+    width: 100% !important;
+    overflow-x: auto !important;
   }
 }
 
-@media (min-width: 769px) {
-  .desktop-only {
-    display: block !important;
-  }
-  .mobile-only {
-    display: none !important;
-  }
-}
-
-/* Alternative approach - if the above doesn't work */
-@media (max-width: 768px) {
-  .instagram-hero {
-    padding: 60px 15px 40px; /* Reduced padding for mobile */
-  }
-  
-  /* Force widget to use masonry layout with 2 columns */
-  #ftnhm13xuk {
-    columns: 2 !important;
-    column-gap: 10px !important;
-    width: 100% !important;
-  }
-  
-  #ftnhm13xuk > * {
-    break-inside: avoid !important;
-    margin-bottom: 10px !important;
-    width: 100% !important;
-  }
+/* Remove all device-specific classes - not needed anymore */
+.desktop-only,
+.mobile-only {
+  display: block !important;
 }
 
 /* Logo Section */

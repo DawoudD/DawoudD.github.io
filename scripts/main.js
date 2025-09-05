@@ -23,39 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.overflow = 'hidden';
     }
   };
-  
-  // select widget based on device type
-(function() {
-  function isMobileDevice() {
-    const screenWidth = window.innerWidth || document.documentElement.clientWidth;
-    return screenWidth <= 768;
-  }
-  
-  function toggleWidgets() {
-    const desktopWidget = document.getElementById('desktop-widget');
-    const mobileWidget = document.getElementById('mobile-widget');
-    
-    if (isMobileDevice()) {
-      desktopWidget.style.display = 'none';
-      mobileWidget.style.display = 'block';
-    } else {
-      desktopWidget.style.display = 'block';
-      mobileWidget.style.display = 'none';
-    }
-  }
-  
-  // Initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', toggleWidgets);
-  } else {
-    toggleWidgets();
-  }
-  
-  // Re-check on resize
-  window.addEventListener('resize', function() {
-    setTimeout(toggleWidgets, 250);
-  });
-})();
 
   window.closeFullscreen = function() {
     const overlay = document.getElementById('fullscreen-overlay');
