@@ -44,18 +44,18 @@ document.addEventListener('DOMContentLoaded', function() {
 //     }
 //   }
   
-  // Initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', toggleWidgets);
-  } else {
-    toggleWidgets();
-  }
+//   // Initialize
+//   if (document.readyState === 'loading') {
+//     document.addEventListener('DOMContentLoaded', toggleWidgets);
+//   } else {
+//     toggleWidgets();
+//   }
   
-  // Re-check on resize
-  window.addEventListener('resize', function() {
-    setTimeout(toggleWidgets, 250);
-  });
-})();
+//   // Re-check on resize
+//   window.addEventListener('resize', function() {
+//     setTimeout(toggleWidgets, 250);
+//   });
+// })();
 
   window.closeFullscreen = function() {
     const overlay = document.getElementById('fullscreen-overlay');
