@@ -59,6 +59,7 @@ nav .nav-links a:hover {
 
 /* Logo Section */
 .logo-section {
+  margin: 80px;
   padding: 60px 100px;
   background: white;
 }
