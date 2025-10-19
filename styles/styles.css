@@ -81,6 +81,20 @@ nav .nav-links a:hover {
   margin-bottom: 30px;
 }
 
+ .logo a {
+    display: inline-block;
+    line-height: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo a:hover {
+    opacity: 0.8;
+  }
+
+  .logo img {
+    cursor: pointer;
+  }
+
 /* About Section - Side by Side */
 /* About Section - Side by Side */
   .about-section {
