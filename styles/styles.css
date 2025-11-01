@@ -464,18 +464,6 @@ nav .nav-links a:hover {
   gap: 40px;
 }
 
-.testimonial-card {
-  background: white;
-  padding: 40px 25px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
 
 .testimonial-card img {
   width: 90px;
@@ -499,11 +487,24 @@ nav .nav-links a:hover {
   font-size: 1rem;
 }
 
+.testimonial-card {
+  position: relative; /* allows corner positioning */
+  background: white;
+  padding: 40px 25px 50px; /* add a bit more bottom space for the date */
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
 .testimonial-date {
-  font-size: 0.9rem;
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 0.85rem;
   color: #888;
-  margin-top: 5px;
-} 
+  font-style: italic;
+}
 
 
 /* Star Ratings */
