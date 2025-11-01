@@ -498,3 +498,11 @@ nav .nav-links a:hover {
   color: #d4a574;
   font-size: 1rem;
 }
+
+/* Star Ratings for testemonials */
+.testimonial-rating {
+  color: #d4a574; /* gold tone to match site accents */
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
