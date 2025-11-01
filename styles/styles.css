@@ -501,7 +501,7 @@ nav .nav-links a:hover {
 .testemonial-date {
   position: absolute;
   bottom: 15px;
-  right: 25px;
+  left: 25px;
   font-size: 0.85rem;
   color: #888;
   font-style: italic;
