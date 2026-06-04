@@ -3,17 +3,394 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>D. Dawoud private chef</title>
-    <script src="scripts/main.js"></script>
+    <title>Events – D. Dawoud Private Chef</title>
     <link rel="stylesheet" href="styles/styles.css" />
+    <style>
+      /* ── Events Page Styles ── */
+
+      .events-hero {
+        padding: 140px 30px 60px;
+        text-align: center;
+        background: #fefefe;
+      }
+
+      .events-hero h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #2c2c2c;
+        margin-bottom: 10px;
+      }
+
+      .events-hero p {
+        font-size: 1.15rem;
+        color: #d4a574;
+        font-style: italic;
+      }
+
+      /* ── Calendar Grid ── */
+      .events-section {
+        padding: 40px 30px 100px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .events-filter {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 8px 22px;
+        border: 1.5px solid #d4a574;
+        background: transparent;
+        color: #2c2c2c;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: 'Georgia', serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        transition: all 0.25s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #d4a574;
+        color: white;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 30px;
+      }
+
+      /* ── Event Card ── */
+      .event-card {
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .event-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+      }
+
+      .event-card-date-bar {
+        background: #2c2c2c;
+        color: white;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .event-day {
+        font-size: 2.2rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .event-month-year {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .event-tag {
+        margin-left: auto;
+        background: #d4a574;
+        color: white;
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        white-space: nowrap;
+      }
+
+      .event-card-body {
+        padding: 22px 22px 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .event-card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c2c2c;
+        line-height: 1.3;
+      }
+
+      .event-card-location {
+        font-size: 0.9rem;
+        color: #888;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .event-card-location svg {
+        flex-shrink: 0;
+      }
+
+      .event-card-desc {
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .event-card-footer {
+        padding: 0 22px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .event-price {
+        font-size: 1.1rem;
+        color: #2c2c2c;
+        font-weight: 600;
+      }
+
+      .event-spots {
+        font-size: 0.82rem;
+        color: #aaa;
+      }
+
+      .event-card-cta {
+        font-size: 0.88rem;
+        color: #d4a574;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* ── No Events Fallback ── */
+      .no-events {
+        text-align: center;
+        color: #aaa;
+        font-style: italic;
+        padding: 60px 0;
+        grid-column: 1 / -1;
+      }
+
+      /* ── Modal ── */
+      .event-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .event-modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .event-modal {
+        background: white;
+        border-radius: 16px;
+        max-width: 680px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        transform: translateY(30px) scale(0.97);
+        transition: transform 0.3s ease;
+      }
+
+      .event-modal-overlay.open .event-modal {
+        transform: translateY(0) scale(1);
+      }
+
+      .event-modal-header {
+        background: #2c2c2c;
+        padding: 30px 30px 24px;
+        border-radius: 16px 16px 0 0;
+        position: relative;
+      }
+
+      .event-modal-header h2 {
+        font-size: 1.7rem;
+        font-weight: 300;
+        color: white;
+        letter-spacing: 1px;
+        line-height: 1.3;
+        margin-bottom: 10px;
+      }
+
+      .event-modal-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 14px;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.88rem;
+      }
+
+      .modal-close-btn {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+
+      .modal-close-btn:hover {
+        background: rgba(255, 255, 255, 0.28);
+      }
+
+      .event-modal-body {
+        padding: 28px 30px;
+      }
+
+      .event-modal-body h3 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #d4a574;
+        margin-bottom: 10px;
+        margin-top: 22px;
+        font-weight: 600;
+      }
+
+      .event-modal-body h3:first-child {
+        margin-top: 0;
+      }
+
+      .event-modal-body p,
+      .event-modal-body ul {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.7;
+      }
+
+      .event-modal-body ul {
+        padding-left: 18px;
+      }
+
+      .event-modal-body ul li {
+        margin-bottom: 6px;
+      }
+
+      .modal-divider {
+        height: 1px;
+        background: #f0ece4;
+        margin: 20px 0;
+      }
+
+      .modal-footer {
+        padding: 0 30px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .modal-price-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-price-label {
+        font-size: 0.78rem;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .modal-price-value {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #2c2c2c;
+      }
+
+      .modal-spots-left {
+        font-size: 0.82rem;
+        color: #aaa;
+        margin-top: 2px;
+      }
+
+      .book-btn {
+        display: inline-block;
+        padding: 14px 36px;
+        background: #d4a574;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-family: 'Georgia', serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.25s ease, transform 0.2s ease;
+      }
+
+      .book-btn:hover {
+        background: #b8935f;
+        transform: translateY(-2px);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 600px) {
+        .events-hero h1 { font-size: 2.2rem; }
+        .event-modal-header h2 { font-size: 1.35rem; }
+        .event-modal-body, .modal-footer { padding-left: 20px; padding-right: 20px; }
+        .modal-footer { flex-direction: column; align-items: flex-start; }
+        .book-btn { width: 100%; text-align: center; }
+      }
+    </style>
   </head>
   <body>
 
-     <!-- Navbar -->
+    <!-- Navbar -->
     <nav>
       <div class="logo">
         <a href="index.html#home">
-        <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
+          <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
         </a>
       </div>
       <div class="nav-links">
@@ -26,14 +403,192 @@
       </div>
     </nav>
 
-    <!-- Logo Section -->
-    <section id="home" class="logo-section">
-      <h1>D. Dawoud</h1>
-      <p class="tagline">Private Chef & Culinary Instructor</p>
+    <!-- Hero -->
+    <div class="events-hero">
+      <h1>Upcoming Events</h1>
+      <p>Intimate dining experiences, pop-up suppers & culinary classes</p>
+    </div>
+
+    <!-- Events -->
+    <section class="events-section">
+
+      <!-- Filter buttons -->
+      <div class="events-filter">
+        <button class="filter-btn active" data-filter="all">All Events</button>
+        <button class="filter-btn" data-filter="dining">Private Dining</button>
+        <button class="filter-btn" data-filter="class">Culinary Class</button>
+        <button class="filter-btn" data-filter="popup">Pop-Up Supper</button>
+      </div>
+
+      <!-- Event Cards -->
+      <div class="events-grid" id="eventsGrid">
+
+        <!-- ─ Event 1 ─ -->
+        <article class="event-card"
+          data-category="dining"
+          data-title="Midsummer Tasting Menu"
+          data-day="21"
+          data-month="June"
+          data-year="2026"
+          data-time="7:00 PM – 10:30 PM"
+          data-location="Private Residence, London W1"
+          data-price="£120 per person"
+          data-spots="6 spots remaining"
+          data-tag="Private Dining"
+          data-desc="An intimate six-course tasting menu celebrating the height of British summer produce. Chef Dawoud sources ingredients weekly from Borough Market and local farm networks to craft dishes that evolve with the season."
+          data-details="The evening begins with a champagne welcome reception, followed by six courses paired with natural wines. Dietary requirements are accommodated with 48 hours notice. The location is shared upon booking confirmation."
+          data-includes="Welcome drinks,Six courses,Wine pairing,Recipe card to take home"
+          data-booking="https://tally.so/r/YOUR_FORM_ID">
+          <div class="event-card-date-bar">
+            <span class="event-day">21</span>
+            <span class="event-month-year"><span>June</span><span>2026</span></span>
+            <span class="event-tag">Private Dining</span>
+          </div>
+          <div class="event-card-body">
+            <div class="event-card-title">Midsummer Tasting Menu</div>
+            <div class="event-card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Private Residence, London W1
+            </div>
+            <div class="event-card-desc">An intimate six-course tasting menu celebrating the height of British summer produce, sourced from Borough Market.</div>
+          </div>
+          <div class="event-card-footer">
+            <div>
+              <div class="event-price">£120 pp</div>
+              <div class="event-spots">6 spots remaining</div>
+            </div>
+            <div class="event-card-cta">View & Book ›</div>
+          </div>
+        </article>
+
+        <!-- ─ Event 2 ─ -->
+        <article class="event-card"
+          data-category="class"
+          data-title="Lebanese Mezze Masterclass"
+          data-day="05"
+          data-month="July"
+          data-year="2026"
+          data-time="11:00 AM – 2:00 PM"
+          data-location="Studio Kitchen, East London"
+          data-price="£85 per person"
+          data-spots="4 spots remaining"
+          data-tag="Culinary Class"
+          data-desc="Learn to build a showstopping mezze spread from scratch. From hand-rolled kibbeh to silky hummus and freshly baked flatbreads, you'll leave with the skills to recreate an authentic Lebanese feast at home."
+          data-details="All ingredients and equipment are provided. You'll cook, then sit down together to enjoy the full spread with drinks. Suitable for all skill levels. Maximum 8 participants."
+          data-includes="All ingredients & equipment,Hands-on cooking session,Shared lunch,Printed recipe pack"
+          data-booking="https://tally.so/r/YOUR_FORM_ID">
+          <div class="event-card-date-bar">
+            <span class="event-day">05</span>
+            <span class="event-month-year"><span>July</span><span>2026</span></span>
+            <span class="event-tag">Culinary Class</span>
+          </div>
+          <div class="event-card-body">
+            <div class="event-card-title">Lebanese Mezze Masterclass</div>
+            <div class="event-card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Studio Kitchen, East London
+            </div>
+            <div class="event-card-desc">Learn kibbeh, hummus, fattoush and fresh flatbreads from scratch — then sit down to enjoy the full spread together.</div>
+          </div>
+          <div class="event-card-footer">
+            <div>
+              <div class="event-price">£85 pp</div>
+              <div class="event-spots">4 spots remaining</div>
+            </div>
+            <div class="event-card-cta">View & Book ›</div>
+          </div>
+        </article>
+
+        <!-- ─ Event 3 ─ -->
+        <article class="event-card"
+          data-category="popup"
+          data-title="Late Summer Pop-Up Supper"
+          data-day="19"
+          data-month="August"
+          data-year="2026"
+          data-time="6:30 PM – 9:30 PM"
+          data-location="Secret Garden Venue, South London"
+          data-price="£95 per person"
+          data-spots="12 spots remaining"
+          data-tag="Pop-Up Supper"
+          data-desc="A convivial, long-table supper in a hidden courtyard garden. Sharing plates inspired by the Levant — slow-cooked lamb, charred vegetables, fragrant rice — served as the sun goes down."
+          data-details="Doors open at 6:30 PM. This is a communal dining format — you may be seated with other guests and that's part of the magic. The exact address is revealed on booking. Drinks available to purchase on the night."
+          data-includes="Four sharing courses,Soft welcome drink,Good company"
+          data-booking="https://tally.so/r/YOUR_FORM_ID">
+          <div class="event-card-date-bar">
+            <span class="event-day">19</span>
+            <span class="event-month-year"><span>August</span><span>2026</span></span>
+            <span class="event-tag">Pop-Up Supper</span>
+          </div>
+          <div class="event-card-body">
+            <div class="event-card-title">Late Summer Pop-Up Supper</div>
+            <div class="event-card-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Secret Garden Venue, South London
+            </div>
+            <div class="event-card-desc">Sharing plates of slow-cooked lamb, charred vegetables and fragrant rice served long-table in a hidden courtyard garden.</div>
+          </div>
+          <div class="event-card-footer">
+            <div>
+              <div class="event-price">£95 pp</div>
+              <div class="event-spots">12 spots remaining</div>
+            </div>
+            <div class="event-card-cta">View & Book ›</div>
+          </div>
+        </article>
+
+      </div><!-- /events-grid -->
     </section>
 
+    <!-- ── Event Detail Modal ── -->
+    <div class="event-modal-overlay" id="eventModalOverlay" role="dialog" aria-modal="true">
+      <div class="event-modal" id="eventModal">
+        <div class="event-modal-header">
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close">✕</button>
+          <h2 id="modalTitle">Event Title</h2>
+          <div class="event-modal-meta">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="modalDate"></span>
+            </span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="modalTime"></span>
+            </span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="modalLocation"></span>
+            </span>
+          </div>
+        </div>
 
-<!-- Contact Section -->
+        <div class="event-modal-body">
+          <h3>About This Event</h3>
+          <p id="modalDesc"></p>
+
+          <div class="modal-divider"></div>
+
+          <h3>What's Included</h3>
+          <ul id="modalIncludes"></ul>
+
+          <div class="modal-divider"></div>
+
+          <h3>Details</h3>
+          <p id="modalDetails"></p>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-price-block">
+            <span class="modal-price-label">Price</span>
+            <span class="modal-price-value" id="modalPrice"></span>
+            <span class="modal-spots-left" id="modalSpots"></span>
+          </div>
+          <a id="modalBookBtn" class="book-btn" href="#" target="_blank" rel="noopener">Book Your Place</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
     <section id="contact" class="contact-section">
       <h2>Get In Touch</h2>
       <p>For private dining experiences and culinary classes, reach out:</p>
@@ -43,17 +598,71 @@
         <li><strong>Instagram:</strong> <a href="https://instagram.com/bite_of_passage_/" target="_blank">@bite_of_passage_</a></li>
       </ul>
     </section>
-  </body>
-</html>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2023 D. Dawoud. All rights reserved.</p>
-      <p>Website by <a href="https://www.example.com" target="_blank">D.Dawoud</a></p>
+      <p>&copy; 2026 D. Dawoud. All rights reserved.</p>
     </footer>
-    
-    <!-- back to the top -->
-    <div data-key="Back to Top Icon" class="ft" id="ftrwhgzr3">
-    </div>
-    <script src="https://wdg.fouita.com/widgets/0x2666b1.js"></script>
- 
+
+    <script>
+      // ── Filter ──
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.event-card').forEach(card => {
+            const match = filter === 'all' || card.dataset.category === filter;
+            card.style.display = match ? '' : 'none';
+          });
+        });
+      });
+
+      // ── Modal ──
+      const overlay = document.getElementById('eventModalOverlay');
+      const modal   = document.getElementById('eventModal');
+
+      function openModal(card) {
+        document.getElementById('modalTitle').textContent    = card.dataset.title;
+        document.getElementById('modalDate').textContent     = `${card.dataset.day} ${card.dataset.month} ${card.dataset.year}`;
+        document.getElementById('modalTime').textContent     = card.dataset.time;
+        document.getElementById('modalLocation').textContent = card.dataset.location;
+        document.getElementById('modalDesc').textContent     = card.dataset.desc;
+        document.getElementById('modalDetails').textContent  = card.dataset.details;
+        document.getElementById('modalPrice').textContent    = card.dataset.price;
+        document.getElementById('modalSpots').textContent    = card.dataset.spots;
+        document.getElementById('modalBookBtn').href         = card.dataset.booking;
+
+        const ul = document.getElementById('modalIncludes');
+        ul.innerHTML = '';
+        card.dataset.includes.split(',').forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item.trim();
+          ul.appendChild(li);
+        });
+
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.event-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+      });
+
+      document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeModal();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
+  </body>
+</html>
