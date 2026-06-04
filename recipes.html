@@ -3,17 +3,172 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>D. Dawoud private chef</title>
-    <script src="scripts/main.js"></script>
+    <title>Recipes – D. Dawoud Private Chef</title>
     <link rel="stylesheet" href="styles/styles.css" />
+    <style>
+      .catalog-hero {
+        padding: 140px 30px 60px;
+        text-align: center;
+        background: #fefefe;
+      }
+
+      .catalog-hero h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #2c2c2c;
+        margin-bottom: 10px;
+      }
+
+      .catalog-hero p {
+        font-size: 1.15rem;
+        color: #d4a574;
+        font-style: italic;
+      }
+
+      .catalog-section {
+        padding: 40px 30px 100px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .catalog-filter {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 8px 22px;
+        border: 1.5px solid #d4a574;
+        background: transparent;
+        color: #2c2c2c;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: 'Georgia', serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        transition: all 0.25s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #d4a574;
+        color: white;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 28px;
+      }
+
+      /* Recipe Card */
+      .recipe-card {
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .recipe-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+      }
+
+      .recipe-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #f0ece4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+      }
+
+      .recipe-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .recipe-card-body {
+        padding: 20px 22px 14px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .recipe-tag {
+        display: inline-block;
+        background: #f0ece4;
+        color: #b8935f;
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+        align-self: flex-start;
+      }
+
+      .recipe-card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c2c2c;
+        line-height: 1.3;
+      }
+
+      .recipe-card-desc {
+        font-size: 0.93rem;
+        color: #777;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .recipe-card-meta {
+        display: flex;
+        gap: 16px;
+        padding: 12px 22px 18px;
+        border-top: 1px solid #f0ece4;
+        font-size: 0.82rem;
+        color: #aaa;
+      }
+
+      .recipe-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .recipe-card-cta {
+        font-size: 0.88rem;
+        color: #d4a574;
+        font-weight: 600;
+        margin-left: auto;
+      }
+
+      @media (max-width: 600px) {
+        .catalog-hero h1 { font-size: 2.2rem; }
+        .catalog-grid { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
   <body>
 
-     <!-- Navbar -->
     <nav>
       <div class="logo">
         <a href="index.html#home">
-        <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
+          <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
         </a>
       </div>
       <div class="nav-links">
@@ -26,14 +181,152 @@
       </div>
     </nav>
 
-    <!-- Logo Section -->
-    <section id="home" class="logo-section">
-      <h1>D. Dawoud</h1>
-      <p class="tagline">Private Chef & Culinary Instructor</p>
+    <div class="catalog-hero">
+      <h1>Recipes</h1>
+      <p>From my kitchen to yours — step-by-step guides to dishes I love</p>
+    </div>
+
+    <section class="catalog-section">
+
+      <div class="catalog-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="levantine">Levantine</button>
+        <button class="filter-btn" data-filter="starter">Starters</button>
+        <button class="filter-btn" data-filter="main">Mains</button>
+        <button class="filter-btn" data-filter="dessert">Desserts</button>
+      </div>
+
+      <div class="catalog-grid">
+
+        <!-- Recipe 1 -->
+        <a class="recipe-card" href="recipes/hummus.html" data-category="levantine starter">
+          <div class="recipe-card-image">🫘</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Levantine · Starter</span>
+            <div class="recipe-card-title">Silky Hummus bi Tahini</div>
+            <div class="recipe-card-desc">The hummus I grew up eating — made properly, with dried chickpeas and an obscene amount of tahini. Worth every minute.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              45 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 4–6
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+        <!-- Recipe 2 -->
+        <a class="recipe-card" href="recipes/kibbeh.html" data-category="levantine main">
+          <div class="recipe-card-image">🥩</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Levantine · Main</span>
+            <div class="recipe-card-title">Baked Kibbeh (Kibbeh bil Sanieh)</div>
+            <div class="recipe-card-desc">A layered bake of spiced minced lamb and bulgur wheat — crisp on top, tender throughout. A Lebanese household staple.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1 hr 30 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 6
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+        <!-- Recipe 3 -->
+        <a class="recipe-card" href="recipes/fattoush.html" data-category="levantine starter">
+          <div class="recipe-card-image">🥗</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Levantine · Starter</span>
+            <div class="recipe-card-title">Fattoush Salad</div>
+            <div class="recipe-card-desc">Crispy fried flatbread, summer vegetables, pomegranate molasses dressing. Bright, textural and utterly addictive.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              20 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 4
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+        <!-- Recipe 4 -->
+        <a class="recipe-card" href="recipes/knafeh.html" data-category="levantine dessert">
+          <div class="recipe-card-image">🍯</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Levantine · Dessert</span>
+            <div class="recipe-card-title">Knafeh with Orange Blossom Syrup</div>
+            <div class="recipe-card-desc">Shredded pastry, warm stretchy cheese and fragrant sugar syrup — a dessert that stops conversation.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              50 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 8
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+        <!-- Recipe 5 -->
+        <a class="recipe-card" href="recipes/slow-roast-lamb.html" data-category="main">
+          <div class="recipe-card-image">🍖</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Main</span>
+            <div class="recipe-card-title">Slow-Roast Shoulder of Lamb</div>
+            <div class="recipe-card-desc">Seven hours low and slow with cumin, coriander and preserved lemon. The kind of centrepiece that earns silence at the table.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              7 hrs 20 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Serves 6–8
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+        <!-- Recipe 6 -->
+        <a class="recipe-card" href="recipes/baklava.html" data-category="levantine dessert">
+          <div class="recipe-card-image">🥐</div>
+          <div class="recipe-card-body">
+            <span class="recipe-tag">Levantine · Dessert</span>
+            <div class="recipe-card-title">Pistachio Baklava</div>
+            <div class="recipe-card-desc">Forty layers of butter-brushed filo, crushed pistachios and rose-water syrup. Once you make your own, you'll never buy it again.</div>
+          </div>
+          <div class="recipe-card-meta">
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1 hr 15 mins
+            </span>
+            <span class="recipe-meta-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Makes 24 pieces
+            </span>
+            <span class="recipe-card-cta">View Recipe ›</span>
+          </div>
+        </a>
+
+      </div>
     </section>
 
-
-<!-- Contact Section -->
     <section id="contact" class="contact-section">
       <h2>Get In Touch</h2>
       <p>For private dining experiences and culinary classes, reach out:</p>
@@ -43,17 +336,24 @@
         <li><strong>Instagram:</strong> <a href="https://instagram.com/bite_of_passage_/" target="_blank">@bite_of_passage_</a></li>
       </ul>
     </section>
+
+    <footer>
+      <p>&copy; 2026 D. Dawoud. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.recipe-card').forEach(card => {
+            const cats = card.dataset.category || '';
+            const match = filter === 'all' || cats.includes(filter);
+            card.style.display = match ? '' : 'none';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
-
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2023 D. Dawoud. All rights reserved.</p>
-      <p>Website by <a href="https://www.example.com" target="_blank">D.Dawoud</a></p>
-    </footer>
-    
-    <!-- back to the top -->
-    <div data-key="Back to Top Icon" class="ft" id="ftrwhgzr3">
-    </div>
-    <script src="https://wdg.fouita.com/widgets/0x2666b1.js"></script>
- 

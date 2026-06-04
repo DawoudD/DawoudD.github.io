@@ -1,0 +1,257 @@
+/* ── Shared styles for recipe & menu-item detail pages ── */
+
+.recipe-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 30px 80px;
+}
+
+.recipe-back {
+  margin-bottom: 30px;
+}
+
+.recipe-back a {
+  color: #d4a574;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.recipe-back a:hover {
+  color: #b8935f;
+}
+
+/* Header */
+.recipe-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #f0ece4;
+}
+
+.recipe-emoji {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.recipe-tag-pill {
+  display: inline-block;
+  background: #f0ece4;
+  color: #b8935f;
+  font-size: 0.78rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.recipe-header h1 {
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #2c2c2c;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.recipe-intro {
+  font-size: 1.05rem;
+  color: #777;
+  line-height: 1.7;
+  max-width: 660px;
+  margin: 0 auto 30px;
+  font-style: italic;
+}
+
+.recipe-stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 1px solid #f0ece4;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.stat {
+  flex: 1;
+  min-width: 120px;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid #f0ece4;
+  text-align: center;
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  color: #2c2c2c;
+  font-weight: 500;
+}
+
+/* Body layout */
+.recipe-body {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.recipe-section {
+  margin-bottom: 36px;
+}
+
+.recipe-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d4a574;
+  display: inline-block;
+}
+
+.recipe-section h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 22px 0 12px;
+}
+
+/* Ingredients */
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-list li {
+  padding: 9px 0;
+  border-bottom: 1px solid #f7f4ef;
+  font-size: 0.97rem;
+  color: #555;
+  display: flex;
+  gap: 10px;
+}
+
+.ingredient-list li:last-child { border-bottom: none; }
+
+.qty {
+  font-weight: 600;
+  color: #d4a574;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+/* Method */
+.method-list {
+  padding: 0;
+  list-style: none;
+  counter-reset: method;
+}
+
+.method-list li {
+  counter-increment: method;
+  padding: 0 0 22px 48px;
+  position: relative;
+  font-size: 0.97rem;
+  color: #555;
+  line-height: 1.75;
+  border-left: 2px solid #f0ece4;
+  margin-left: 18px;
+}
+
+.method-list li::before {
+  content: counter(method);
+  position: absolute;
+  left: -18px;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  background: #2c2c2c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.method-list li:last-child {
+  border-left-color: transparent;
+}
+
+.method-list li strong {
+  display: block;
+  color: #2c2c2c;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+/* Notes */
+.recipe-notes {
+  background: #f8f6f0;
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+
+.recipe-notes p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.recipe-notes p:last-child { margin-bottom: 0; }
+
+/* Menu item description block */
+.menu-item-desc {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.menu-allergens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.allergen-tag {
+  background: #f0ece4;
+  color: #888;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .recipe-body { grid-template-columns: 1fr; gap: 20px; }
+  .recipe-header h1 { font-size: 2rem; }
+  .stat { min-width: 100px; }
+}

@@ -3,17 +3,178 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>D. Dawoud private chef</title>
-    <script src="scripts/main.js"></script>
+    <title>Menu – D. Dawoud Private Chef</title>
     <link rel="stylesheet" href="styles/styles.css" />
+    <style>
+      .catalog-hero {
+        padding: 140px 30px 60px;
+        text-align: center;
+        background: #fefefe;
+      }
+
+      .catalog-hero h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #2c2c2c;
+        margin-bottom: 10px;
+      }
+
+      .catalog-hero p {
+        font-size: 1.15rem;
+        color: #d4a574;
+        font-style: italic;
+        max-width: 560px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .catalog-section {
+        padding: 40px 30px 100px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      /* Course headings */
+      .course-heading {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 50px 0 24px;
+      }
+
+      .course-heading:first-of-type { margin-top: 0; }
+
+      .course-heading h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #2c2c2c;
+        white-space: nowrap;
+      }
+
+      .course-line {
+        flex: 1;
+        height: 1px;
+        background: #e8e2d8;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 10px;
+      }
+
+      /* Menu Item Card */
+      .menu-item-card {
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .menu-item-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+      }
+
+      .menu-item-image {
+        width: 100%;
+        height: 180px;
+        background: #f0ece4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+      }
+
+      .menu-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .menu-item-body {
+        padding: 18px 20px 14px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .menu-item-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c2c2c;
+        line-height: 1.3;
+      }
+
+      .menu-item-desc {
+        font-size: 0.9rem;
+        color: #888;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .menu-item-footer {
+        padding: 10px 20px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #f5f2ed;
+      }
+
+      .menu-item-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .menu-tag {
+        font-size: 0.72rem;
+        background: #f0ece4;
+        color: #b8935f;
+        padding: 3px 9px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .menu-item-cta {
+        font-size: 0.85rem;
+        color: #d4a574;
+        font-weight: 600;
+      }
+
+      .menu-note {
+        text-align: center;
+        font-size: 0.95rem;
+        color: #aaa;
+        font-style: italic;
+        margin-top: 50px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 600px) {
+        .catalog-hero h1 { font-size: 2.2rem; }
+        .catalog-grid { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
   <body>
 
-     <!-- Navbar -->
     <nav>
       <div class="logo">
         <a href="index.html#home">
-        <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
+          <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
         </a>
       </div>
       <div class="nav-links">
@@ -26,14 +187,158 @@
       </div>
     </nav>
 
-    <!-- Logo Section -->
-    <section id="home" class="logo-section">
-      <h1>D. Dawoud</h1>
-      <p class="tagline">Private Chef & Culinary Instructor</p>
+    <div class="catalog-hero">
+      <h1>The Menu</h1>
+      <p>Each dish is crafted from the finest seasonal ingredients and tailored to you. Click any dish to see full details, allergens and inspiration.</p>
+    </div>
+
+    <section class="catalog-section">
+
+      <!-- Starters -->
+      <div class="course-heading">
+        <h2>Starters</h2>
+        <div class="course-line"></div>
+      </div>
+
+      <div class="catalog-grid">
+
+        <a class="menu-item-card" href="menu-items/hummus-starter.html">
+          <div class="menu-item-image">🫘</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Hummus bi Tahini</div>
+            <div class="menu-item-desc">Silky hand-made hummus, cold-pressed olive oil, warm pitta. Deceptively simple, impossible to stop eating.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegan</span><span class="menu-tag">GF option</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/fattoush-starter.html">
+          <div class="menu-item-image">🥗</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Fattoush & Pomegranate</div>
+            <div class="menu-item-desc">Crispy flatbread, summer leaves, cucumber, radish and a pomegranate molasses dressing.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegan</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/kibbeh-starter.html">
+          <div class="menu-item-image">🥙</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Fried Kibbeh</div>
+            <div class="menu-item-desc">Torpedo-shaped croquettes of spiced lamb and bulgur, crisp outside and fragrant within. Served with yoghurt and mint.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Lamb</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Mains -->
+      <div class="course-heading">
+        <h2>Mains</h2>
+        <div class="course-line"></div>
+      </div>
+
+      <div class="catalog-grid">
+
+        <a class="menu-item-card" href="menu-items/lamb-shoulder.html">
+          <div class="menu-item-image">🍖</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Slow-Roast Shoulder of Lamb</div>
+            <div class="menu-item-desc">Seven hours at low heat with cumin, coriander and preserved lemon. Falls apart. Centre-of-the-table silence.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Lamb</span><span class="menu-tag">GF</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/sea-bass.html">
+          <div class="menu-item-image">🐟</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Chermoula Sea Bass</div>
+            <div class="menu-item-desc">Whole sea bass baked over a bed of fennel and tomato, finished with a North African chermoula of coriander, cumin and lemon.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Fish</span><span class="menu-tag">GF</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/aubergine.html">
+          <div class="menu-item-image">🍆</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Charred Aubergine & Tahini</div>
+            <div class="menu-item-desc">Whole aubergine charred directly over flame until smoky and collapsed, finished with tahini, pomegranate and toasted pine nuts.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegan</span><span class="menu-tag">GF</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Desserts -->
+      <div class="course-heading">
+        <h2>Desserts</h2>
+        <div class="course-line"></div>
+      </div>
+
+      <div class="catalog-grid">
+
+        <a class="menu-item-card" href="menu-items/knafeh-dessert.html">
+          <div class="menu-item-image">🍯</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Knafeh</div>
+            <div class="menu-item-desc">Warm shredded pastry over stretchy cheese, soaked in orange blossom syrup, finished with crushed pistachios. Best eaten in silence.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegetarian</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/baklava-dessert.html">
+          <div class="menu-item-image">🥐</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Pistachio Baklava</div>
+            <div class="menu-item-desc">Forty layers of filo, ground pistachios and rose-water syrup. Served with strong cardamom coffee.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegan</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+        <a class="menu-item-card" href="menu-items/muhalabia.html">
+          <div class="menu-item-image">🍮</div>
+          <div class="menu-item-body">
+            <div class="menu-item-title">Muhalabia</div>
+            <div class="menu-item-desc">A Lebanese milk pudding scented with rose water, topped with crushed pistachios and a drizzle of honey.</div>
+          </div>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags"><span class="menu-tag">Vegetarian</span><span class="menu-tag">GF</span></div>
+            <span class="menu-item-cta">Details ›</span>
+          </div>
+        </a>
+
+      </div>
+
+      <p class="menu-note">
+        All menus are bespoke — dishes are adapted seasonally and dietary requirements are always accommodated.<br>
+        <a href="#contact" style="color:#d4a574;text-decoration:none;">Get in touch</a> to discuss a tailored menu for your occasion.
+      </p>
+
     </section>
 
-
-<!-- Contact Section -->
     <section id="contact" class="contact-section">
       <h2>Get In Touch</h2>
       <p>For private dining experiences and culinary classes, reach out:</p>
@@ -43,17 +348,10 @@
         <li><strong>Instagram:</strong> <a href="https://instagram.com/bite_of_passage_/" target="_blank">@bite_of_passage_</a></li>
       </ul>
     </section>
+
+    <footer>
+      <p>&copy; 2026 D. Dawoud. All rights reserved.</p>
+    </footer>
+
   </body>
 </html>
-
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2023 D. Dawoud. All rights reserved.</p>
-      <p>Website by <a href="https://www.example.com" target="_blank">D.Dawoud</a></p>
-    </footer>
-    
-    <!-- back to the top -->
-    <div data-key="Back to Top Icon" class="ft" id="ftrwhgzr3">
-    </div>
-    <script src="https://wdg.fouita.com/widgets/0x2666b1.js"></script>
- 
