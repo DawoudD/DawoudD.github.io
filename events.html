@@ -448,7 +448,10 @@
           <img src="images/Bite of Passage Logo.jpg" alt="D. Dawoud Logo" />
         </a>
       </div>
-      <div class="nav-links">
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
         <a href="index.html#home">Home</a>
         <a href="menu.html" class="nav-button">Menu</a>
         <a href="testimonials.html" class="nav-button">Testimonials</a>
@@ -478,13 +481,13 @@
       <!-- Event Cards -->
       <div class="events-grid" id="eventsGrid">
 
-        <!-- ─ No Upcoming Events Card ─ -->
+        <!-- ─ No Upcoming Events Card 
         <div class="no-events-card">
           <div class="no-events-icon">🍽</div>
           <h3>No Upcoming Events</h3>
           <p>Check back soon — new dining experiences, culinary classes and pop-up suppers are always in the works.</p>
           <p>Follow <a href="https://instagram.com/bite_of_passage_/" target="_blank">@bite_of_passage_</a> on Instagram to be the first to know.</p>
-        </div>
+        </div> ─ -->
 
 
         <!-- ─ Event 1
@@ -738,5 +741,6 @@
         if (e.key === 'Escape') closeModal();
       });
     </script>
+      <script src="scripts/nav.js"></script>
   </body>
 </html>
